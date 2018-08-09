@@ -72,6 +72,7 @@ window.onload = function() {
     console.log("tu dispositivo no cuenta con localStorage");
   }
 };
+
 $(document).ready(function() {
   var ajustes = localStorage.getItem("ajustes");
   if (ajustes == "1") {
@@ -84,14 +85,14 @@ $(document).ready(function() {
     var empresa = localStorage.getItem("empresa");
     var imagen = localStorage.getItem("imgData");
     var imagen2 = localStorage.getItem("imgData2");
-    console.log(imagen);
-    console.log(imagen2);
-    $("#nombre_txt").val(nombre);
+    fetchimage();
+     $("#nombre_txt").val(nombre);
     $("#pass_txt").val(poliza);
     $("#host_txt").val(host);
     $("#num_txt").val(numero);
     $("#puerto_txt").val(puerto);
     $("#nombreempresa").text(empresa);
+
   } else {
     console.log("Nunca guardaste Valores");
     $("#nombre_txt").val("John Doe");
@@ -177,8 +178,7 @@ $(document).ready(function() {
                localStorage.setItem("empresa", empresa);
                localStorage.setItem("ajustes", "1");
                $('#modalajustes').modal('hide');
-
-
+               loacation.reload();
 
 
     });
@@ -332,4 +332,5 @@ $(document).ready(function() {
     });
     $("#formulario1").fadeOut("slow", function() {});
   });
+
 });
