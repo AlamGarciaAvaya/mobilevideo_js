@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/custom.css">
+  <title>Mobile Video Demo</title>
+</head>
+<body>
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#"><img class="logoprincipal"  src="img/logo.png" /></a>
+    <h1 id="nombreempresa"></h1>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation" id="ajustesbtn">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  </nav>
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <br>
+    <br>
+    <h1 class="display-4">Contacta a un Agente</h1>
+    <p class="lead">Proporciona los datos</p>
+  </div>
+  <div class="container">
+    <form id="formulario1">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Nombre</label>
+        <input type="text" class="form-control" id="nombre_txt" aria-describedby="emailHelp">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Póliza</label>
+        <input type="number" class="form-control" id="pass_txt">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1" hidden>Host</label>
+        <input type="text" class="form-control" id="host_txt" hidden>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1" hidden>Puerto</label>
+        <input type="number" class="form-control" id="puerto_txt" hidden>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1" hidden>Numero</label>
+        <input type="number" class="form-control" id="num_txt" hidden>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1" hidden>Latitud</label>
+        <input type="text" class="form-control" id="lat_txt" hidden>
+        <label for="exampleInputPassword1" hidden>Longitud</label>
+        <input type="text" class="form-control" id="long_txt" hidden>
+      </div>
+      <button type="button" id="iniciarllamada" class="btn btn-primary">Iniciar Llamada</button>
+    </form>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-12">
+          <video id="remote-video-view"></video>
+          <video id="local-video-view" muted></video>
+
+
+        </div>
+        <div class="col-xs-4 col-md-4">
+        </div>
+        <div class="col-xs-4 col-md-4">
+
+        <div class="wrapper">
+          <i class="fa fa-5x fa-phone" id="dcolgar"></i>
+          <i class="fa fa-5x fa-microphone-slash" id="dAudio"></i>
+          <i class="fa fa-5x fa-video-camera" id="dVideo"></i>
+        </div>
+          </div>
+          <div class="col-xs-4 col-md-4">
+
+        </div>
+      </div>
+
+      <!-- Modal para los errores-->
+      <div class="modal fade" id="modalerrores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="tituloerror">Error</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+        <div class="modal-body">
+          <p id="mensajeerror">Mensaje de Error</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Fin Modal -->
+
+
+  <!-- Modal para los settings-->
+
+  <div class="modal fade" id="modalajustes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <form id="formulario2" method="post">
+            <div class="form-group">
+              <label for="exampleInputPassword1">Nombre</label>
+              <input type="text" class="form-control" id="snombre_txt" name="snombre_txt">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Poliza</label>
+              <input type="number" class="form-control" id="spoliza_txt" name="spoliza_txt">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Host</label>
+              <input type="text" class="form-control" id="shost_txt" name="shost_txt">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Número</label>
+              <input type="number" class="form-control" id="snumero_txt" name="snumero_txt">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Puerto</label>
+              <input type="text" class="form-control" id="spuerto_txt" name="spuerto_txt">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Nombre Empresa</label>
+              <input type="text" class="form-control" id="sempresa_txt" name="sempresa_txt">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Logo</label>
+              <input name="file" type="file"/>
+            </div>
+            <button type="button" class="btn btn-success btn-sm" id="guardarbtn"> Enviar</button>
+            <button type="button" class="btn btn-danger btn-sm" id="limpiarbtn">Limpiar Ajustes</button>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- Fin Modal -->
+
+  </div>
+
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/avaya-client-sdk-min.js"></script>
+  <script src="js/bootstrap.bundle.js"></script>
+  <script src="js/custom-avaya.js"></script>
+</body>
+
+</html>
