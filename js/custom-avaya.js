@@ -179,7 +179,7 @@ $(document).ready(function() {
                localStorage.setItem("ajustes", "1");
                $('#modalajustes').modal('hide');
 
-
+location.reload();
 
     });
 
