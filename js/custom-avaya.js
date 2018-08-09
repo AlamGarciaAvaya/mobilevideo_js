@@ -1,4 +1,27 @@
+var bannerImage = document.getElementById('bannerImg');
+var result = document.getElementById('res');
+var img = document.getElementById('tableBanner');
+
+
+
+  function getBase64Image(img) {
+      var canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
+      var ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0);
+      var dataURL = canvas.toDataURL("image/png");
+      return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+  }
+  function fetchimage () {
+      var dataImage = localStorage.getItem('imgData');
+      img.src = "data:image/png;base64," + dataImage;
+      console.log("data:image/png;base64," + dataImage);
+  }
+  fetchimage();
+
 window.onload = function() {
+
   var startPos;
   var geoSuccess = function(position) {
     startPos = position;
@@ -59,6 +82,10 @@ $(document).ready(function() {
     var numero = localStorage.getItem("numero");
     var puerto = localStorage.getItem("puerto");
     var empresa = localStorage.getItem("empresa");
+    var imagen = localStorage.getItem("imgData");
+    var imagen2 = localStorage.getItem("imgData2");
+    console.log(imagen);
+    console.log(imagen2);
     $("#nombre_txt").val(nombre);
     $("#pass_txt").val(poliza);
     $("#host_txt").val(host);
@@ -88,6 +115,24 @@ $(document).ready(function() {
     location.reload();
   });
   $("#ajustesbtn").click(function() {
+
+
+    bannerImage.addEventListener('change', function() {
+          var file = this.files[0];
+          if (file.type.indexOf('image') < 0) {
+              res.innerHTML = 'invalid type';
+              return;
+          }
+          var fReader = new FileReader();
+          fReader.onload = function() {
+              img.src = fReader.result;
+              localStorage.setItem("imgData", getBase64Image(img));
+              localStorage.setItem("imgData2", fReader.result);
+          };
+          fReader.readAsDataURL(file);
+      });
+
+
     $('#modalajustes').modal('show');
     var ajustes = localStorage.getItem("ajustes");
     if (ajustes == "1") {
@@ -115,6 +160,7 @@ $(document).ready(function() {
     }
 
     $("#guardarbtn").click(function() {
+      // Get all variables
 
                console.log("Ajustes Guardados");
                var nombre = $('#snombre_txt').val();
@@ -131,48 +177,8 @@ $(document).ready(function() {
                localStorage.setItem("empresa", empresa);
                localStorage.setItem("ajustes", "1");
                $('#modalajustes').modal('hide');
-                var bannerImage = document.getElementById('file');
-                var result = document.getElementById('res');
-                var img = document.getElementById('tableBanner');
 
-                //
-                bannerImage.addEventListener('change', function() {
-                    var file = this.files[0];
-                    if (file.type.indexOf('image') < 0) {
-                        res.innerHTML = 'invalid type';
-                        return;
-                    }
-                    var fReader = new FileReader();
-                    fReader.onload = function() {
-                        img.src = fReader.result;
-                        localStorage.setItem("imgData", getBase64Image(img));
-                    };
 
-                    fReader.readAsDataURL(file);
-                });
-
-                function getBase64Image(img) {
-                    var canvas = document.createElement("canvas");
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-
-                    var ctx = canvas.getContext("2d");
-                    ctx.drawImage(img, 0, 0);
-
-                    var dataURL = canvas.toDataURL("image/png");
-
-                    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-                }
-
-                function fetchimage () {
-                    var dataImage = localStorage.getItem('imgData');
-                    img.src = "data:image/png;base64," + dataImage;
-                }
-
-                // Call fetch to get image from localStorage.
-                fetchimage();
-
-               location.reload();
 
 
     });

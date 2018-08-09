@@ -14,8 +14,9 @@
 <body>
   <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="#">
-      <img class="logoprincipal"  src="" id="logo"/>
-      <div id="res"></div>
+      <img src="" class="logoprincipal" id="tableBanner" />
+<!-- for result output -->
+<div id="res" class="logoprincipal"></div>
     </a>
     <h1 id="nombreempresa"></h1>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation" id="ajustesbtn">
@@ -137,7 +138,7 @@
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1">Logo</label>
-              <input name="file" type="file"/>
+              <input type="file" id="bannerImg" >
             </div>
             <button type="button" class="btn btn-success btn-sm" id="guardarbtn"> Enviar</button>
             <button type="button" class="btn btn-danger btn-sm" id="limpiarbtn">Limpiar Ajustes</button>
