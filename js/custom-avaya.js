@@ -178,8 +178,7 @@ $(document).ready(function() {
                localStorage.setItem("empresa", empresa);
                localStorage.setItem("ajustes", "1");
                $('#modalajustes').modal('hide');
-
-location.reload();
+               location.reload();
 
     });
 
